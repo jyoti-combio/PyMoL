@@ -1,2 +1,2 @@
 # PyMoL
-PyMol commands 
+ PyMOL commands that are used for biomolecular visualization
