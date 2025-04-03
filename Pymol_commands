@@ -1,0 +1,54 @@
+####################### PyMOL commands ###############################
+
+
+#for no checkrboard and clear image
+set ray_opaque_background, 1
+
+
+#high quality image
+png test.png, width=1200, height=1200, dpi=300, ray=1
+
+##Let’s say that you have two structures (object_1, object_2) and you want to align them. You only need to type the following in the PyMOL console.
+
+align object_1, object_2
+
+##Select the chain or residues of interest: You can use the sele command to specify the chain or residues of interest that you want to align.
+
+# Select chain A of object_1 (first protein loaded)
+sele chain_A, object_1 and chain A 
+
+# Select a range of residues (100-150) from object_2 
+sele region, object_2 and resi 100-150
+
+
+Align the selected chain or residues: You can use the align command to align the selected chain or residues to the other protein structure.
+
+# Aligning object_1 to a range of residues in object_2
+align object_1, region 
+
+# Aligning obect_2 to chain A of object 1
+align object_2, chain_A
+
+##Align the two objects containing the alpha carbons:
+
+align ca_protein1, ca_protein2
+
+##Something you could do is to load both the initial and final frames (you can get them via gmx trjconv) of the simulation and align two ligands based on their names and residue codes (resn) using the sele command in  PyMOL.
+
+# Load ligands
+load protein1.pdb, object1  
+load protein2.pdb, object2  
+
+# Extract ligands with residue name "LIG" in objects ligand1 and ligand2
+sele ligand1, object1 and resn LIG  
+sele ligand2, object2 and resn LIG
+
+
+
+###########################################
+Alter residue index in a pdb file
+###########################################
+
+alter (all),resi=str(int(resi)+534)
+sort
+
